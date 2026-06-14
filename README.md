@@ -110,17 +110,19 @@ COAD-trained models applied to gastric cancer with **zero gastric examples**. UI
 
 ### Figures
 
-<p align="center">
-  <img src="assets/plot1_gap.png" width="32%" alt="Generalization gap">
-  <img src="assets/plot2_forest.png" width="33%" alt="Forest plot">
-  <img src="assets/plot3_roc.png" width="31%" alt="ROC curves">
-</p>
+<div align="center">
+
+| Generalization gap | Forest plot | ROC curve |
+|:------------------:|:-----------:|:---------:|
+| <img src="assets/plot1_gap.png" width="270"/> | <img src="assets/plot2_forest.png" width="270"/> | <img src="assets/plot3_roc.png" width="270"/> |
+
+</div>
+
 <p align="center">
   <em><b>Left:</b> the UITT gain grows under distribution shift (internal +0.017 vs cross-cancer +0.053, TransMIL).
   <b>Middle:</b> forest plot of UITT vs baseline AUC with 95% CIs and DeLong p-values, all three aggregators.
   <b>Right:</b> ROC for the strongest aggregator (TransMIL); UITT (orange) dominates the baseline (navy).</em>
 </p>
-
 ---
 
 ## Installation
