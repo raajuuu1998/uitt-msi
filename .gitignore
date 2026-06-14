@@ -1,0 +1,20 @@
+# data and model artifacts (do not commit)
+data/
+results/
+*.pt
+*.pth
+*.ckpt
+embeddings/
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# os / editor
+.DS_Store
+.idea/
+.vscode/

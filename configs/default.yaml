@@ -1,0 +1,61 @@
+# Default configuration (mirrors the paper)
+
+# ---- training ----
+folds: 5
+epochs: 20
+lr: 1.0e-4
+weight_decay: 1.0e-5
+hidden_dim: 256
+seed: 42
+optimizer: adam
+batch_size: 1          # one slide per step (variable tile counts)
+checkpoint: best-validation-AUC per fold
+
+# ---- backbones ----
+backbones:
+  UNI2h: 1536
+  CONCH: 512
+
+# ---- aggregators ----
+aggregators: [ABMIL, CLAM_SB, TransMIL, MeanPool, MaxPool]
+primary_aggregators: [ABMIL, CLAM_SB, TransMIL]   # reported in the paper
+
+# ---- priors / feature configs ----
+configs:
+  baseline:   {extra_dim: 0,  prefix: ""}          # frozen embedding only
+  uitt:       {extra_dim: 10, prefix: "bioprior"}  # the method
+  peripheral: {extra_dim: 1,  prefix: "peripheral"}# comparison (journal)
+  sinpe:      {extra_dim: 12, prefix: "sinpe"}     # comparison (journal), n_freqs=3
+
+# ---- UITT transform ----
+uitt:
+  kmeans_clusters: 50
+  immune_top_frac: 0.3        # top 30% tightest clusters = immune (15/50)
+  max_sample_per_slide: 500
+  knn: [10, 20, 30, 100]
+  dbscan_eps: 0.02
+  dbscan_min_samples: 5
+
+# ---- feature extraction (upstream, not in this repo) ----
+extraction:
+  tile_size: 224
+  magnification: 20x
+  mpp: 0.5
+  max_tiles: 8000
+  tissue_mask: otsu
+  stain_norm: none
+
+# ---- statistics ----
+stats:
+  bootstrap_resamples: 1000
+  delong: paired (Sun & Xu 2014)
+
+# ---- data layout expected on disk ----
+# data/
+#   TCGA_COAD/
+#     labels_tcga_coad.csv         columns: patient_id, msi_label  (MSI-H / MSS)
+#     embeddings/uni2h/{pid}.pt     dict: features[N,1536], coords[N,2], slide_dims=(W,H)
+#     embeddings/conch/{pid}.pt     dict: features[N,512],  coords[N,2], slide_dims=(W,H)
+#   TCGA_STAD/
+#     labels_tcga_stad.csv
+#     embeddings/uni2h/{pid}.pt
