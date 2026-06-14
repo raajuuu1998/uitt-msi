@@ -18,7 +18,7 @@
 Foundation-model (FM) features for histopathology entangle conserved immune biology with tissue-specific appearance, so a model trained to predict microsatellite instability (MSI) on one cancer type generalizes poorly to another. **UITT** is a set of ten tissue-agnostic spatial descriptors, computed from frozen FM embeddings and tile coordinates **without annotation**, that make the conserved immune architecture of MSI-high tumors explicit. Appended to tile embeddings before multiple-instance-learning (MIL) aggregation, UITT requires **no target-domain data** and transfers where appearance-based features do not.
 
 <p align="center">
-  <img src="assets/pipeline_msi.png" width="95%" alt="UITT pipeline">
+  <img src="assets/new_pipeline.png" width="95%" alt="UITT pipeline">
   <br>
   <em>The UITT pipeline. A frozen FM embeds each tile; immune-like tiles are identified in feature space without supervision; ten spatial descriptors are computed per tile and appended to the embedding before MIL aggregation. Because they encode immune biology rather than appearance, they transfer across cancer types.</em>
 </p>
